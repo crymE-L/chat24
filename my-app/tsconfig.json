@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@teamhanko/hanko-elements": ["node_modules/@teamhanko/hanko-elements"]
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -21,6 +25,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "node_modules/@teamhanko/hanko-elements"
   ]
 }

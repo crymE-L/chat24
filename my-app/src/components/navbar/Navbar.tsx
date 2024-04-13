@@ -33,8 +33,8 @@ export const Navbar = () => {
   return (
     <Box as="section" height="10vh">
       <Box bg="bg.surface" position="relative" zIndex="tooltip">
-        <Container minW="100%" px={isDesktop ? "48" : "0"}>
-          <HStack justify="space-between" px={isDesktop ? "40" : "0"}>
+        <Container minW="100%" px={isDesktop ? "4" : "0"}>
+          <HStack justify="space-between" px={isDesktop ? "16" : "0"}>
             <a href="/">
               <Logo />
             </a>

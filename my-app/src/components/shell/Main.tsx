@@ -26,7 +26,7 @@ export const Main = (props: BoxProps) => {
               Sou o Chat24, o seu assistente virtual de saúde do Serviço Nacional de Saúde Português. 
             </Text>
             <Text fontSize="xl" as="b">
-              Como posso o posso hoje?
+              Como o posso ajudar hoje?
             </Text>
           </Flex>
           <Flex>
