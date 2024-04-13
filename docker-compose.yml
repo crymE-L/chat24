@@ -1,0 +1,25 @@
+version: '3.2'
+
+services:
+  devcontainer:
+    build:
+      context: ./
+      dockerfile: .devcontainer/Dockerfile
+    container_name: chat24-devcontainer
+    env_file: .env
+    image: chat24/devcontainer:latest
+    working_dir: /chat24
+    tty: true
+    user: vscode:vscode
+    shm_size: "4gb"
+    volumes:
+      - ./:/chat24/
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.ssh:/home/vscode/.ssh
+    depends_on:
+      - database
+
+  database:
+    image: bitnami/postgresql:latest
+    container_name: chat24-database
+    env_file: .env

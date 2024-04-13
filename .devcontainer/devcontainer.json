@@ -1,0 +1,58 @@
+{
+    "name": "Workbench",
+    "remoteUser": "vscode",
+    "dockerComposeFile": ["../docker-compose.yml"],
+    "shutdownAction": "stopCompose",
+    "service": "devcontainer",
+    "workspaceFolder": "/chat24",
+    "customizations": {
+      "vscode": {
+        "extensions": [
+			"ms-azuretools.vscode-docker",
+			"dbaeumer.vscode-eslint",
+			"esbenp.prettier-vscode",
+			"dsznajder.es7-react-js-snippets",
+			"bierner.markdown-mermaid",
+			"ms-vsliveshare.vsliveshare",
+			"ms-vscode.makefile-tools",
+			"DavidAnson.vscode-markdownlint",
+			"Prisma.prisma",
+			"pflannery.vscode-versionlens",
+			"cweijan.vscode-postgresql-client2"
+		],
+        "settings": {
+          "files.eol": "\n",
+          "search.exclude": {
+            "**/.next": true
+          },
+          "[javascript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+            "editor.formatOnSave": true
+          },
+          "typescript.tsdk": "/chat24/frontend/node_modules/typescript/lib/",
+          "[typescript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+            "editor.formatOnSave": true
+          },
+          "[typescriptreact]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+            "editor.formatOnSave": true
+          },
+          "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": true,
+            "source.fixAll": true,
+            "source.removeUnusedImports": true
+          },
+          "eslint.format.enable": true,
+          "eslint.validate": [
+            "javascript",
+            "typescript",
+            "typescriptreact"
+          ],
+          "eslint.workingDirectories": [
+            "./frontend"
+          ]
+        }
+      }
+    }
+  }
