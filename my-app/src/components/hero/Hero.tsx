@@ -3,6 +3,22 @@ import { Box, Center, Heading, Text, Input, Button, Spinner } from '@chakra-ui/r
 import { fetchOpenAIResponse } from '../../utils/openai';
 
 export const Hero = () => {
+  const [response, setResponse] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [inputMessage, setInputMessage] = useState('');
+
+  const handleButtonClick = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetchOpenAIResponse(inputMessage); // Pass the input message to the function
+      setResponse(response);
+    } catch (error) {
+      console.error('Error fetching response:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Box
       as="section"
@@ -35,18 +51,22 @@ export const Hero = () => {
           border="none"
           mt="4"
           size="lg"
+          value={inputMessage} // Bind the input value to state
+          onChange={(e) => setInputMessage(e.target.value)} // Update state on input change
         />
         <Button
-          onClick={fetchOpenAIResponse}
+          onClick={handleButtonClick}
           colorScheme="blue"
           mt="4"
           size="lg"
           fontWeight="bold"
           fontSize="md"
+          disabled={isLoading}
         >
+          {isLoading ? <Spinner size="sm" /> : 'Submit'}
         </Button>
         <Text color="white" mt="4">
-          Submit
+          {response}
         </Text>
       </Center>
     </Box>
