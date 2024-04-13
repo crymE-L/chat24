@@ -1,11 +1,11 @@
 import { ChakraProvider, theme } from "@chakra-ui/react";
 import { Navbar } from "../components/navbar/Navbar";
-import { Hero } from "../components/hero/Hero";
-import { Divisor } from "../components/divisor/Divisor";
+import { Chat } from "../components/chat/Chat";
+import { Shell } from "../components/shell/Shell";
 
 export const HomePage = () => (
   <ChakraProvider theme={theme}>
     <Navbar />
-    <Hero />
+    <Shell />
   </ChakraProvider>
 );

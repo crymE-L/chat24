@@ -1,7 +1,7 @@
-from flask import Flask, request, jsonify
+from fastapi import FastAPI, Request, HTTPException
 from chat import initiate_interaction, trigger_assistant, get_response, upload_file, create_assistant
 
-app = Flask(__name__)
+app = FastAPI()
 
 transformer_paper_path = "../data/health_guidance_paper.pdf"
 file_to_upload = upload_file(transformer_paper_path)
@@ -11,16 +11,23 @@ instruction = "I want you to act as a virtual doctor, which is replacing a virtu
 
 my_assistant = create_assistant(assistant_name, instruction, file_to_upload, model="gpt-3.5-turbo")
 
-@app.route('/chat', methods=['POST'])
-def chat():
-    user_message = request.json.get('message')
+@app.post('/')
+async def chat(request: Request):
+    data = await request.json()
+    user_message = data.get('message')
     if not user_message:
-        return jsonify({'error': 'Message not provided'}), 400
-
+        raise HTTPException(status_code=400, detail="Message not provided")
+    
     my_thread = initiate_interaction(user_message, file_to_upload)
     trigger_assistant(my_thread, my_assistant)
     response = get_response(my_thread)
-    return jsonify({'response': response})
+    return {'response': response}
+
+# Handle requests for favicon.ico
+@app.get('/favicon.ico')
+async def favicon():
+    return Response(content=b"", media_type="image/png")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

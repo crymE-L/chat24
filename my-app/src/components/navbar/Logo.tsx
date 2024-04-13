@@ -6,7 +6,7 @@ export const Logo = (props: HTMLChakraProps<'img'>) => (
     src={logoPNG} // Set the source to your PNG logo
     alt="Logo" // Provide an alt text for accessibility
     height="auto"
-    width="24"
+    width="40"
     {...props}
   />
 )
