@@ -9,7 +9,7 @@ export async function fetchOpenAIResponse(inputMessage: string) {
   });
 
   const response = await openai.chat.completions.create({
-    model: ASSISTANT_ID, // Use the assistant ID instead of the regular GPT model
+    model: 'gpt-3.5-turbo-16k-0613',
     temperature: 0.5,
     messages: [
       {
@@ -20,7 +20,5 @@ export async function fetchOpenAIResponse(inputMessage: string) {
     max_tokens: 400,
     stream: false,
   });
-
-  // Return an empty string if response is null or undefined
   return response?.choices[0]?.message?.content || '';
 }
