@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { BoxProps, Box, Flex, Center, InputGroup, Heading, Text, Input, Button, Spinner, InputRightElement } from '@chakra-ui/react';
-import { fetchOpenAIResponse } from '../../utils/openai';
+import React, { useState } from 'react';
+import { BoxProps, Box, Flex, Center, InputGroup, Text, Input, Button, InputRightElement } from '@chakra-ui/react';
 
 
 export const Main = (props: BoxProps) => {
+  const [input, setInput] = useState<string>("");
+  const [response, setResponse] = useState<string>("");
+
+  async function submitMessage(message: string) {
+    const response = await fetch("http://127.0.0.1:8000/chat/?message=" + encodeURIComponent(message));
+    const data = await response.json();
+    setResponse(data.response);
+  }
+  
   return (
-  <Box as="main" {...props} borderRightWidth="1px">
+    <Box as="main" {...props} borderRightWidth="1px">
       <Center
         maxW={{ base: 'xl', md: '7xl' }}
         mx="auto"
@@ -17,7 +25,7 @@ export const Main = (props: BoxProps) => {
         textAlign="center"
         color="black"
       >
-        <Flex height="90vh">
+        <Flex height="90vh" flexDirection="column" justifyContent="space-between">
           <Flex flexDirection="column">
             <Text fontSize="xl" as="b">
               Olá! 
@@ -28,36 +36,44 @@ export const Main = (props: BoxProps) => {
             <Text fontSize="xl" as="b">
               Como o posso ajudar hoje?
             </Text>
+         </Flex>
+          <Flex width="20vw" alignSelf="flex-start" padding="2" background="#058689" borderRadius="xl" mr="4">
+              <Text color="white">
+                {input}
+              </Text>
           </Flex>
-          <Flex>
-            <Text color="black" mt="4">
-            </Text>
+          <Flex width="20vw" alignSelf="flex-end" padding="2" background="#058689" borderRadius="xl" >
+              <Text color="white">
+                {response}
+              </Text>
           </Flex>
+          <InputGroup size="lg">
+            <Input
+              py="2rem"
+              placeholder="Escreva a sua mensagem"
+              color="black"
+              bg="white"
+              border="solid"
+              borderColor="black"
+              borderRadius="xl"
+              _focus={{ borderColor: "black" }}
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <InputRightElement width="5rem" mr="4" mt="2.5">
+              <Button
+                h="3rem"
+                colorScheme="blue"
+                size="lg"
+                fontWeight="bold"
+                fontSize="md"
+                onClick={() => submitMessage(input)}
+              >
+                Enviar
+              </Button>
+            </InputRightElement>
+          </InputGroup>
         </Flex>
-        <InputGroup size="lg">
-          <Input
-            py="2rem"
-            placeholder="Escreva a sua mensagem"
-            color="black"
-            bg="white"
-            border="solid"
-            borderColor="black"
-            borderRadius="xl"
-            _focus={{ borderColor: "black" }}
-          />
-          <InputRightElement width="5rem" mr="4" mt="2.5">
-            <Button
-              h="3rem"
-              colorScheme="blue"
-              size="lg"
-              fontWeight="bold"
-              fontSize="md"
-            >
-              Enviar
-            </Button>
-          </InputRightElement>
-        </InputGroup>
       </Center>
-  </Box>
+    </Box>
   );
 };

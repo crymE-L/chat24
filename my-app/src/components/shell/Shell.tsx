@@ -18,7 +18,7 @@ import {
   
     return (
       <Flex width="100vw" height="100vh">
-        <Main borderTopWidth="1px" width="75vw" height="90vh" py="12" px={{ base: '4', md: '8' }} />
+        <Main borderTopWidth="1px" width="75vw" height="90vh" pt="6" pb="12" px="8" />
         <Box
           borderTopWidth="1px"
           borderRightWidth="1px"
