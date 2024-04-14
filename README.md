@@ -18,23 +18,48 @@ Make sure you have Node.js and npm installed on your local machine.
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/crymE-L/chat24.git
+   git clone https://github.com/crymE-L/codespring-hackathon.git
 
 2. Navigate to my-app folder
 
    ```bash
    cd my-app
 
-3. Run the project locally
+3. Run the front-end project locally
 
    ```bash
    npm start
 
 This command will start the development server. Open your browser and navigate to http://localhost:3000 to view the application.
 
+4. Open a new terminal
+
+   ```bash
+   cd my-app
+
+5. Navigate to chat folder
+
+   ```bash
+   cd chat/
+
+6. Run the back-end project locally
+
+   ```bash
+   python manage.py runserver
+
+### Technologies Used
+
+- Front-end:
+  - React
+  - Chakra UI
+
+- Back-end:
+  - Django
+  - OpenAI API
+
 ### Live Demo
 
-You can also check out the live demo of this project on Vercel:
+You can also check out the live demo of this project on Vercel: https://codespring.vercel.app/
 
 ### License
 
