@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BoxProps, Box, Flex, Center, InputGroup, Text, Input, Button, InputRightElement, Spinner } from '@chakra-ui/react';
 
 export const Main = (props: BoxProps) => {
   const [input, setInput] = useState<string>("");
   const [responses, setResponses] = useState<{ input: string, response: string }[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  
+  const conversationEndRef = useRef<HTMLDivElement>(null);
 
   async function submitMessage(message: string) {
     setLoading(true);
@@ -17,6 +17,19 @@ export const Main = (props: BoxProps) => {
       localStorage.setItem("responses", JSON.stringify(updatedResponses));
       return updatedResponses;
     });
+
+    // Send the "ghost call" after a short delay
+    setTimeout(async () => {
+      const ghostResponse = await fetch("http://127.0.0.1:8000/chat/?message=ghost");
+      const ghostData = await ghostResponse.json();
+      const ghostNewResponse = { input: "ghost", response: ghostData.response };
+      setResponses(prevResponses => {
+        const updatedResponses = [...prevResponses, ghostNewResponse];
+        localStorage.setItem("responses", JSON.stringify(updatedResponses));
+        return updatedResponses;
+      });
+    }, 1000); // Adjust the delay as needed
+
     setLoading(false);
   }
 
@@ -26,6 +39,14 @@ export const Main = (props: BoxProps) => {
       setResponses(JSON.parse(storedResponses));
     }
   }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [responses, loading]); // Listen for changes in responses and loading
+
+  const scrollToBottom = () => {
+    conversationEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const handleInputSubmit = () => {
     submitMessage(input);
@@ -52,13 +73,22 @@ export const Main = (props: BoxProps) => {
             </Text>
           </Flex>
           <Flex flexDirection="column" flex="1" width="100%" mt="4">
-            {responses.map((item, index) => ( 
-              <Flex key={index} alignSelf={index % 2 === 0 ? "flex-end" : "flex-start"} textAlign={index % 2 === 0 ? "start" : "start"} mt="4" mr={index % 2 === 0 ? "2" : "2"}>
-                <Text color="black" p="4" borderRadius="lg" bg={index % 2 === 0 ? "blue.200" : "gray.200"}>
-                  {index % 2 === 0 ? item.input : item.response}
-                </Text>
-              </Flex>
-            ))}
+            {responses.map((item, index) => { 
+              if (item.input !== "ghost") {
+                return (
+                  <Flex flexDirection="column" key={index} alignSelf={index % 2 === 0 ? "flex-end" : "flex-start"} textAlign={index % 2 === 0 ? "start" : "start"} mt="8" mr={index % 2 === 0 ? "2" : "2"}>
+                    <Text color="black" p="4" borderRadius="lg" bg="blue.200">
+                      {item.input}
+                    </Text>
+                    <Text color="black" p="4" borderRadius="lg" bg="gray.200" mt="8">
+                      {item.response}
+                    </Text>
+                  </Flex>
+                );
+              }
+              return null; // Return null for "ghost" inputs
+            })}
+            <div ref={conversationEndRef} />
             {loading && (
               <Flex justifyContent="center" mt="4">
                 <Spinner size="xl" color="blue.500" thickness="4px" />
@@ -103,6 +133,3 @@ export const Main = (props: BoxProps) => {
     </Box>
   );
 };
-
-// Estou com algumas dores na zona abdominal e uma indisposição intestinal. O que sugere que deva fazer?
-// O que sugeres que coma sem glúten?
