@@ -8,15 +8,9 @@ import {
   useDisclosure,
   Flex,
   Avatar,
-  Icon,
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider
 } from '@chakra-ui/react'
 import { Logo } from './Logo'
 import { MobileDrawer } from './MobileNavbar'
@@ -27,7 +21,7 @@ export const Navbar = () => {
   const mobileNavbar = useDisclosure()
 
   return (
-    <Box as="section" height="8vh">
+    <Box as="section" height="9vh">
       <Box bg="bg.surface" position="relative" zIndex="tooltip">
         <Container minW="100%" px={isDesktop ? "4" : "0"}>
           <HStack justify="space-between" px={isDesktop ? "16" : "0"}>

@@ -36,16 +36,14 @@ export const Main = (props: BoxProps) => {
     <Box as="main" {...props} borderRightWidth="1px">
       <Center
         maxW={{ base: 'xl', md: '7xl' }}
-        mx="auto"
         px={{ base: '6', md: '' }}
         h="full"
-        zIndex={1}
-        position="relative"
         flexDirection="column"
         textAlign="center"
         color="black"
+        mt="4"
       >
-        <Flex height="90vh" width="66vw" flexDirection="column" overflowY="auto">
+        <Flex height="80vh" width="66vw" flexDirection="column" overflowY="auto">
           <Flex flexDirection="column" w="50vw" alignItems="flex-start" mt="4" textAlign="start">
             <Text color="black" p="4" borderRadius="lg" bg="gray.200">
               Olá! 
@@ -62,44 +60,49 @@ export const Main = (props: BoxProps) => {
               </Flex>
             ))}
             {loading && (
-              <Flex justifyContent="center">
+              <Flex justifyContent="center" mt="4">
                 <Spinner size="xl" color="blue.500" thickness="4px" />
               </Flex>
             )}
           </Flex>
         </Flex>
-        <InputGroup size="lg" mt="4">
-          <Input
-            py="2rem"
-            placeholder="Escreva a sua mensagem"
-            color="black"
-            bg="white"
-            border="solid"
-            borderColor="black"
-            borderRadius="xl"
-            _focus={{ borderColor: "black" }}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                handleInputSubmit();
-              }
-            }}
-          />
-          <InputRightElement width="5rem" mr="4" mt="2.5">
-            <Button
-              h="3rem"
-              colorScheme="blue"
-              size="lg"
-              fontWeight="bold"
-              fontSize="md"
-              onClick={handleInputSubmit}
-            >
-              Enviar
-            </Button>
-          </InputRightElement>
-        </InputGroup>
+        <Flex w="67vw" mt="4">
+          <InputGroup size="lg">
+            <Input
+              py="2rem"
+              placeholder="Escreva a sua mensagem"
+              color="black"
+              bg="white"
+              border="solid"
+              borderColor="black"
+              borderRadius="xl"
+              _focus={{ borderColor: "black" }}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleInputSubmit();
+                }
+              }}
+            />
+            <InputRightElement width="5rem" mr="4" mt="2.5">
+              <Button
+                h="3rem"
+                colorScheme="blue"
+                size="lg"
+                fontWeight="bold"
+                fontSize="md"
+                onClick={handleInputSubmit}
+              >
+                Enviar
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </Flex>
       </Center>
     </Box>
   );
 };
+
+// Estou com algumas dores na zona abdominal e uma indisposição intestinal. O que sugere que deva fazer?
+// O que sugeres que coma sem glúten?
