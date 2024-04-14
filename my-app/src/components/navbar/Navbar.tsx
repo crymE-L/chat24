@@ -26,12 +26,8 @@ export const Navbar = () => {
   const isDesktop = useBreakpointValue({ base: false, lg: true })
   const mobileNavbar = useDisclosure()
 
-  const goToTeamPage = () => {
-    window.location.href = '/Team';
-  };
-
   return (
-    <Box as="section" height="10vh">
+    <Box as="section" height="8vh">
       <Box bg="bg.surface" position="relative" zIndex="tooltip">
         <Container minW="100%" px={isDesktop ? "4" : "0"}>
           <HStack justify="space-between" px={isDesktop ? "16" : "0"}>

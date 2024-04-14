@@ -17,12 +17,13 @@ import {
     const { isOpen, onOpen, onClose } = useDisclosure()
   
     return (
-      <Flex width="100vw" height="100vh">
+      <Flex width="100vw" height="90vh">
         <Main borderTopWidth="1px" width="75vw" height="90vh" pt="6" pb="12" px="8" />
         <Box
           borderTopWidth="1px"
           borderRightWidth="1px"
-          width={{ md: '20rem', xl: '24rem' }}
+          width="25vw"
+          height="90vh"
           display={{ base: 'none', md: 'initial' }}
           overflowY="auto"
           onScroll={(x) => setSidebarIsScrolled(x.currentTarget.scrollTop > 32)}
