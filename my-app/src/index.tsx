@@ -2,6 +2,7 @@ import { ColorModeScript } from "@chakra-ui/react";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { HomePage } from "./pages/Home";
+import './global.css';
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
 

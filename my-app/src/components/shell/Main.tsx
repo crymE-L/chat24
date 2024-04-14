@@ -37,7 +37,7 @@ export const Main = (props: BoxProps) => {
       <Center
         maxW={{ base: 'xl', md: '7xl' }}
         mx="auto"
-        px={{ base: '6', md: '8' }}
+        px={{ base: '6', md: '' }}
         h="full"
         zIndex={1}
         position="relative"
@@ -45,9 +45,9 @@ export const Main = (props: BoxProps) => {
         textAlign="center"
         color="black"
       >
-        <Flex height="90vh" width="65vw" flexDirection="column" overflowY="auto">
-          <Flex flexDirection="column" w="50vw" alignItems="flex-start" mt="4">
-            <Text color="black" p="1" borderRadius="lg" bg="gray.200">
+        <Flex height="90vh" width="66vw" flexDirection="column" overflowY="auto">
+          <Flex flexDirection="column" w="50vw" alignItems="flex-start" mt="4" textAlign="start">
+            <Text color="black" p="4" borderRadius="lg" bg="gray.200">
               Olá! 
               Sou o Chat24, o seu assistente virtual de saúde do Serviço Nacional de Saúde Português. 
               Como o posso ajudar hoje?
@@ -55,7 +55,7 @@ export const Main = (props: BoxProps) => {
           </Flex>
           <Flex flexDirection="column" flex="1" width="100%" mt="4">
             {responses.map((item, index) => ( 
-              <Flex key={index} alignSelf={index % 2 === 0 ? "flex-end" : "flex-start"} textAlign={index % 2 === 0 ? "start" : "start"} mt="4">
+              <Flex key={index} alignSelf={index % 2 === 0 ? "flex-end" : "flex-start"} textAlign={index % 2 === 0 ? "start" : "start"} mt="4" mr={index % 2 === 0 ? "2" : "2"}>
                 <Text color="black" p="4" borderRadius="lg" bg={index % 2 === 0 ? "blue.200" : "gray.200"}>
                   {index % 2 === 0 ? item.input : item.response}
                 </Text>
