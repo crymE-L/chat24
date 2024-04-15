@@ -42,7 +42,7 @@ This command will start the development server. Open your browser and navigate t
 7. Navigate to chat folder
 
    ```bash
-   pip install python django openai
+   pip install django django-cors-headers openai
 
 8. Run the back-end project locally
 
