@@ -18,7 +18,6 @@ export const Main = (props: BoxProps) => {
       return updatedResponses;
     });
 
-    // Send the "ghost call" after a short delay
     setTimeout(async () => {
       const ghostResponse = await fetch("http://127.0.0.1:8000/chat/?message=ghost");
       const ghostData = await ghostResponse.json();
@@ -28,7 +27,7 @@ export const Main = (props: BoxProps) => {
         localStorage.setItem("responses", JSON.stringify(updatedResponses));
         return updatedResponses;
       });
-    }, 1000); // Adjust the delay as needed
+    }, 1000);
 
     setLoading(false);
   }
@@ -42,7 +41,7 @@ export const Main = (props: BoxProps) => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [responses, loading]); // Listen for changes in responses and loading
+  }, [responses, loading]);
 
   const scrollToBottom = () => {
     conversationEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -86,7 +85,7 @@ export const Main = (props: BoxProps) => {
                   </Flex>
                 );
               }
-              return null; // Return null for "ghost" inputs
+              return null;
             })}
             <div ref={conversationEndRef} />
             {loading && (

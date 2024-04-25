@@ -5,6 +5,7 @@ import {
     Flex,
     HStack,
     useDisclosure,
+    BoxProps
   } from '@chakra-ui/react'
   import { useState } from 'react'
   import { FiMenu } from 'react-icons/fi'
@@ -12,10 +13,12 @@ import {
   import { Main } from './Main'
   import { Sidebar } from './Sidebar'
   
-  export const Shell = () => {
+
+  export const Shell = (props: BoxProps) => {
     const [sidebarIsScrolled, setSidebarIsScrolled] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
-  
+    const [location, setLocation] = useState<any>(null)
+
     return (
       <Flex width="100vw" height="90vh">
         <Main borderTopWidth="1px" width="75vw" height="90vh" pt="6" pb="12" px="8" />
@@ -44,7 +47,7 @@ import {
               </HStack>
             </HStack>
           </ColumnHeader>
-          <Sidebar />
+          <Sidebar setLocation={setLocation}/>
         </Box>
       </Flex>
     )
