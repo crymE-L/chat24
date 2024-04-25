@@ -7,7 +7,7 @@ import {
     useDisclosure,
     BoxProps
   } from '@chakra-ui/react'
-  import React, { useState, useEffect } from 'react'
+  import { useState } from 'react'
   import { FiMenu } from 'react-icons/fi'
   import { ColumnHeader, ColumnHeading, ColumnIconButton } from './Column'
   import { Main } from './Main'
