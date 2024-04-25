@@ -2,7 +2,7 @@ export const personalInfo = [
   {
     id: '1',
     title: 'Localização Atual:',
-    content: 'Porto',
+    content: 'Algarve',
   },
   {
     id: '2',
