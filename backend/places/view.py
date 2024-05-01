@@ -1,8 +1,13 @@
 # views.py
-import requests
+import requests, json, os
 from django.http import JsonResponse
-import json
-from django.shortcuts import render, HttpResponse
+from dotenv import load_dotenv, dotenv_values
+
+# load .env file
+load_dotenv()
+
+# retrieve Places api
+places_api = os.getenv("GOOGLE_PLACES_API")
 
 def get_visitor_ip(request):
     response = requests.get('https://api.ipify.org')
@@ -31,7 +36,7 @@ def nearby_pharmacies(request):
                 'location': f'{latitude},{longitude}',
                 'radius': 1000,  # Radius in meters (adjust as needed)
                 'type': {place_type},  # Type of place (e.g., pharmacy, hospital)
-                'key': 'AIzaSyBneQF1I3xDyARGokBjXUWu6vFOeGtYXLo',
+                'key': {places_api},
             })
 
             # Process the response and extract relevant information
@@ -67,7 +72,7 @@ def nearby_hospitals(request):
                 'location': f'{latitude},{longitude}',
                 'radius': 1000,  # Radius in meters (adjust as needed)
                 'type': {place_type},  # Type of place (e.g., pharmacy, hospital)
-                'key': 'AIzaSyBneQF1I3xDyARGokBjXUWu6vFOeGtYXLo',
+                'key': {places_api},
             })
 
             # Process the response and extract relevant information
