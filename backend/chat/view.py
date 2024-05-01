@@ -1,13 +1,13 @@
-import os
-import time
+import os, time
 from django.http import JsonResponse
 from openai import OpenAI
 
-OPENAI_API_KEY = "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"
-openai = OpenAI(api_key=OPENAI_API_KEY)
-os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+load_dotenv()
 
-ASSISTANT_ID = "asst_bHni39Hlf16JKbdhkEMYoHlh"
+OPENAI_API_KEY = os.getenv("OPENAI_KEY")
+
+ASSISTANT_ID = os.getenv("OPENAI_ASSISTANT_KEY")
+
 THREAD_ID = None
 
 def create_assistant(assistant_name, 
