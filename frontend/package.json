@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "@auth0/nextjs-auth0": "^3.5.0",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/pro-theme": "^0.10.0",
     "@chakra-ui/react": "^2.8.2",
@@ -17,6 +18,7 @@
     "@types/react": "^18.2.72",
     "@types/react-dom": "^18.2.22",
     "@types/react-router-dom": "^5.3.3",
+    "dotenv": "^16.4.5",
     "framer-motion": "^6.5.1",
     "next-auth": "^4.24.7",
     "openai": "^4.33.0",

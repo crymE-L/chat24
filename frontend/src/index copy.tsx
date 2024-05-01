@@ -5,7 +5,6 @@ import { HomePage } from "./Home";
 import "./global.css";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const container = document.getElementById("root");
 if (!container) throw new Error("Failed to find the root element");
@@ -14,9 +13,7 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <React.StrictMode>
     <ColorModeScript />
-    <UserProvider>
-      <HomePage />
-    </UserProvider>
+    <HomePage />
   </React.StrictMode>
 );
 
