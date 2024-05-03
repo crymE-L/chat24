@@ -20,7 +20,7 @@ To get a local copy of this project up and running, follow these simple steps:
 3. Navigate to my-app folder
 
    ```bash
-   cd my-app
+   cd frontend
 
 4. Install everything related to the front-end
 
@@ -37,12 +37,12 @@ This command will start the development server. Open your browser and navigate t
 6. Navigate to chat folder
 
    ```bash
-   cd chat/
+   cd backend/
 
 7. Navigate to chat folder
 
    ```bash
-   pip install django django-cors-headers openai
+   pip install django django-cors-headers openai requests
 
 8. Run the back-end project locally
 
